@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('./asset/INDEX.jpg');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+      background-repeat: no-repeat;
+      background-color: #f2f2f2;
+    }
+
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.8); /* Example: semi-transparent white background */
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .additional-options {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #createAccountForm,
+    #forgotPasswordForm {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #createAccountForm h2,
+    #forgotPasswordForm h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    /* Additional CSS for color and background images */
+    body {
+      background-color: #f9f9f9; /* Light gray background */
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    button,
+    input[type="submit"] {
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover,
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    /* Placeholder background images */
+    #login-background {
+      background: url(./asset/smallplace.jpg) center center/cover no-repeat;
+      height: 180px; /* Adjust height as needed */
+      border-radius: 20px;
+      margin-bottom: 30px;
+    }
+
+    .marquee-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFFF00; /* yellow */
+  z-index: 9999; /* Ensures the marquee appears on top */
+
+}
+.none{
+  display: none;
+}
+.gap {
+  display: flex;
+  gap: 5px;
+}
+  </style>
+  <script>
+    function showCreateAccount() {
+      document.getElementById("createAccountForm").classList.remove("hidden");
+      document.getElementById("forgotPasswordForm").classList.add("hidden");
+    }
+
+    function hideCreateAccount() {
+      document.getElementById("createAccountForm").classList.add("hidden");
+    }
+
+    function showForgotPassword() {
+      document.getElementById("forgotPasswordForm").classList.remove("hidden");
+      document.getElementById("createAccountForm").classList.add("hidden");
+    }
+
+    function hideForgotPassword() {
+      document.getElementById("forgotPasswordForm").classList.add("hidden");
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // You can add your validation logic here
+      if (email && phone && username && password) {
+        // Perform login action
+        alert("Login successful!");
+      } else {
+        document.getElementById("errorMessage").innerText = "Please fill in all fields";
+      }
+      
+    });
+  </script>
+</head>
+<body>
+  <div class="marquee-container">
+
+    <marquee behavior="slide" direction="right" bgcolor="yellow">welcome to dashboard login page</marquee>
+
+  </div>
+  <br>
+  <br>
+  
+  <audio autoplay>
+    <source src="./voice.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <div class="login-container" onload="generate()">
+    <div id="login-background"></div>
+    <h2>Dashboard Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="username">Phone no</label>
+        <input type="number" id="phone no" name="phone no" required>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="number text" id="password" name="password" required>
+      </div>
+      <div class="form-group gap">
+        <label for="role">Role</label>
+        <select id="role" name="role">
+          <option value="teacher">Teacher</option>
+          <option value="student">Student</option>
+          <input type="text" id="submit" placeholder="Captcha code" />
+          <div class="inline" onclick="generate()">
+            <button onclick="generate()">Generate Capcha</button>
+          </div>
+          <div id="image" class="inline none" selectable="False">
+          </div>
+          <input type="submit" id="btn" onclick="checkCaptcha()" />
+          <p id="key"></p>
+ 
+        </select>
+      </div>
+       <button onclick="document.location='internal.html'">WELCOME TO DASHBOARD PAGE</button>
+    </form>
+    <div id="errorMessage" class="error-message"></div>
+    <div class="additional-options">
+      <button onclick="document.location='registeration.html'">Create Account</button>
+      <button onclick="document.location='forget.html'">Forgot Password</button>
+    </div>
+  </div>
+  
+  <div id="createAccountForm" class="hidden">
+    <h2>Create Account</h2>
+    <!-- Include form fields for creating an account -->
+    
+    <button onclick="hideCreateAccount()">Cancel</button>
+   
+  </div>
+
+  <div id="forgotPasswordForm" class="hidden">
+    <h2>Forgot Password</h2>
+    <!-- Include form fields for resetting password -->
+    <button onclick="hideForgotPassword()">Cancel</button>
+  </div>
+</body>
+<script>
+  function generate() {
+    var captcha = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 6; i++) {
+      captcha += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    document.getElementById("image").innerText = captcha;
+    document.getElementById("key").innerText = captcha;
+  }
+
+  function checkCaptcha() {
+    var user_input = document.getElementById("submit").value;
+    var generated_captcha = document.getElementById("key").innerText;
+    if (user_input === generated_captcha) {
+      alert("Captcha matched!");
+    } else {
+      alert("Captcha does not match. Please try again!");
+    }
+    generate();
+  }
+</script>
+</html>
